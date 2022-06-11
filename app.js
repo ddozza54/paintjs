@@ -3,6 +3,9 @@ const ctx = canvas.getContext("2d");
 ctx.strokeStyle = "#2c2c2c";
 ctx.lineWidth = 2.5;
 
+canvas.width = 700;
+canvas.height = 700;
+
 let painting = false;
 
 function stopPainting(evnet) {
@@ -10,7 +13,7 @@ function stopPainting(evnet) {
 }
 
 function startPainting() {
-    stopPainting = true;
+    painting = true;
 }
 //캔버스에서의 좌표값 받아오기
 function onMouseMove(event) {
@@ -22,7 +25,7 @@ function onMouseMove(event) {
         //클릭을 하고 움직이면(페인팅 시작하면) 이 부분은 작동하지 않음. 
     }
     else {
-        ctx.lineTo();
+        ctx.lineTo(x, y);
         ctx.stroke();
     }
 }

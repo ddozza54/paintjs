@@ -1,5 +1,7 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
+const colors = document.getElementsByClassName("jsColor");
+
 ctx.strokeStyle = "#2c2c2c";
 ctx.lineWidth = 2.5;
 
@@ -11,7 +13,6 @@ let painting = false;
 function stopPainting(evnet) {
     painting = false;
 }
-
 function startPainting() {
     painting = true;
 }
@@ -29,9 +30,11 @@ function onMouseMove(event) {
         ctx.stroke();
     }
 }
-//마우스를 클릭한 상태 
-function onMouseDown(event) {
-    painting = true;
+
+function handleColorClick(event) {
+    const color = event.target.style.backgroundColor;
+    console.log(color);
+    ctx.strokeStyle = color;
 }
 
 
@@ -42,3 +45,6 @@ if (canvas) {
     //stopPainting을 안넣은 이유 : 마우스를 떼도 라인이 필요. 
     canvas.addEventListener("mouseleave", stopPainting) //캔버스를 벗어남
 }
+
+Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
+// Array.from(colors).forEach(color => color.addEventListener)

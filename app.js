@@ -1,6 +1,7 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
 
 ctx.strokeStyle = "#2c2c2c";
 ctx.lineWidth = 2.5;
@@ -37,6 +38,10 @@ function handleColorClick(event) {
     ctx.strokeStyle = color;
 }
 
+function handleRangeChange(event) {
+    const size = event.target.value;
+    ctx.lineWidth = size;
+}
 
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove)
@@ -48,3 +53,8 @@ if (canvas) {
 
 Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
 // Array.from(colors).forEach(color => color.addEventListener)
+
+//range가 있는지 확인하는 과정
+if (range) {
+    range.addEventListener("click", handleRangeChange)
+}

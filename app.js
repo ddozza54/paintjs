@@ -64,7 +64,9 @@ function handleModeClick() {
 }
 
 function handleCanvasClick() {
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (filling) {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 }
 
 if (canvas) {

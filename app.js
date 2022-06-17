@@ -2,6 +2,7 @@ const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
+const mode = document.getElementById("jsMode");
 
 ctx.strokeStyle = "#2c2c2c";
 ctx.lineWidth = 2.5;
@@ -10,6 +11,8 @@ canvas.width = 700;
 canvas.height = 700;
 
 let painting = false;
+let filling = false;
+//filling을 하고 있을 때 그걸 말해줄 variable이 필요함. 
 
 function stopPainting(evnet) {
     painting = false;
@@ -34,13 +37,24 @@ function onMouseMove(event) {
 
 function handleColorClick(event) {
     const color = event.target.style.backgroundColor;
-    console.log(color);
     ctx.strokeStyle = color;
 }
 
 function handleRangeChange(event) {
     const size = event.target.value;
     ctx.lineWidth = size;
+}
+
+function handleModeChange() {
+    if (filling === true) {
+        filling = false;
+        mode.innerText = "Fill";
+    }
+    else {
+        filling = true;
+        mode.innerText = "Paint";
+    }
+
 }
 
 if (canvas) {
@@ -57,4 +71,8 @@ Array.from(colors).forEach(color => color.addEventListener("click", handleColorC
 //range가 있는지 확인하는 과정
 if (range) {
     range.addEventListener("click", handleRangeChange)
+}
+
+if (mode) {
+    mode.addEventListener("click", handleModeChange);
 }

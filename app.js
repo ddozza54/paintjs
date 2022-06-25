@@ -77,7 +77,7 @@ function handleCM(event) {
 }
 
 function handleSaveClick() {
-    const image = canvas.toDataURL("image/jpeg");
+    const image = canvas.toDataURL("image/jpeg"); //default는 png
     const link = document.createElement("a");
     link.href = image;
     link.download = "PaintJS[🎨]";
